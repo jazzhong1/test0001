@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="ko"><html>
+<head>
+   <title>Image Viewer</title>
+   <script language="javascript">
+      <!--
+      var default_image = "<?=$img?>";
+      var now_image = "";
+      var img;
+
+      function loadImage(image) {
+         if(!image) now_image = default_image;
+         else now_image = image;
+
+         img = document.getElementById("preview");
+         img.setAttribute("src", now_image);
+
+         setTimeout("checkImage()", 100);
+      }
+
+      function checkImage() {
+         if(img.width > 0) init();
+         else setTimeout("checkImage()", 100);
+      }
+
+      function init() {
+         var img = document.getElementById("preview");
+         var id = document.all;
+         var w = img.width;
+         var h = img.height;
+         w += (id) ? 15 : 40;
+         h += (id) ? 140 : 170;
+
+         if(screen.width < w) {
+            w = screen.width;
+            document.body.style.overflowX = '';
+         } else document.body.style.overflowX = 'hidden';
+
+         if(screen.height < h) {
+            h = screen.height;
+            if(screen.width > (w+20)) w += 20;
+            document.body.style.overflowY = '';
+         } else document.body.style.overflowY = 'hidden';
+
+         resizeTo(w,h);
+         moveTo(((screen.width - w)/2),((screen.height - h)/2));
+      }
+   </script>
+</head>
+<body onload="loadImage();" style="margin:0px 0px 0px 0px;overflowX:hidden;overflowY:hidden;">
+<table align="center" width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr>
+      <td align="center" valign="middle"><a href="javascript:self.close();void(0);" onFocus="this.blur();"><img id="preview" src="<?=$img?>" border="0"></a></td>
+   </tr>
+</table>
+</body>
+</html>
+
+</html>
